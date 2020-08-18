@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;1,400&display=swap');
+
+$textColor: black;
+$spacer-margin: 2em;
+$spacer-width: 1px;
+$image-size: 10em;
+
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 2em auto 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    @media print {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+
+    h1, h2 {
+        text-transform: uppercase;
+    }
+
+    h2 {
+        letter-spacing: 0.1em;
+    }
+
+    a {
+        color: $textColor;
+        text-decoration: none;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .italics {
+        font-style: italic;
+    }
+
+    .name {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+
+        h1 {
+            letter-spacing: 0.25em;
+            padding: 1em 2em;
+            border: 2px solid $textColor;
+            text-align: center;
+            display: inline-block;
+        }
+    }
+
+    .position {
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        text-align: center;
+    }
+
+    .picture {
+        text-align: center;
+        margin-bottom: 1em;
+
+        img {
+            width: $image-size;
+            height: $image-size;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    .big-body, .big-body-footer {
+        flex-grow: 2;
+        display: flex;
+        justify-content: center;
+        padding: 0 5em;
+
+        .left {
+            text-align: right;
+
+            .about p:not(:nth-child(2)) {
+                margin: 0;
+            }
+        }
+
+        .left, .right {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+
+        .spacer-horz {
+            width: $spacer-width;
+        }
+
+        .entry {
+            margin-bottom: 1em;
+
+            time, h3, p {
+                margin: 0;
+            }
+        }
+
+        svg {
+            height: 1em;
+        }
+    }
+
+    .spacer {
+        background-color: #ddd;
+        margin: 0 $spacer-margin;
+    }
+
+    .spacer-vert {
+        margin-top: $spacer-margin;
+        height: $spacer-width;
+    }
+
+    .projects {
+        text-align: center;
+
+        h3 {
+            margin: 0 2px 0 0;
+        }
+
+        .project-wrapper {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 0 2em;
+
+            .project {
+                flex-grow: 1;
+                flex-basis: 50%;
+            }
+        }
+    }
+}

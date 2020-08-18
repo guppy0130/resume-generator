@@ -1,0 +1,35 @@
+{
+  "name": "resume-generator",
+  "version": "0.1.0",
+  "description": "automate resume building",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "test:watch": "mocha -w --watch-files 'lib.js' --watch-files 'test/*' --reporter=min",
+    "start": "nodemon --ignore test.pdf -e hbs,scss,js,yml index.js -- -d content.yml -t templates/guppy0130 -o test.pdf -g \"Systems Administrator\"",
+    "dev": "nodemon --ignore test.html -e hbs,scss,js,yml index.js -- -d content.yml -t templates/guppy0130 -o test.html -g \"Systems Administrator\"",
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guppy0130/resume-generator.git"
+  },
+  "author": "guppy0130",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guppy0130/resume-generator/issues"
+  },
+  "homepage": "https://github.com/guppy0130/resume-generator#readme",
+  "dependencies": {
+    "handlebars": "^4.7.6",
+    "node-sass": "^4.14.1",
+    "puppeteer": "^5.2.1",
+    "yaml": "^1.10.0",
+    "yargs": "^15.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "mocha": "^8.1.1"
+  }
+}
