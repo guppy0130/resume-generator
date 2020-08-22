@@ -3,7 +3,8 @@ const hbs = require('handlebars');
 const sass = require('node-sass');
 const yaml = require('yaml');
 const fs = require('fs').promises;
-const { readFileSync } = require('fs');
+const { readFileSync, statSync } = require('fs');
+const path = require('path');
 
 /**
  * Parse `argv.data` as YAML, and return elements tagged with `argv.tag`
@@ -11,8 +12,19 @@ const { readFileSync } = require('fs');
  * @returns {Object} argv.data as an object, filtered by TAG
  */
 const getYaml = async (argv) => {
-    const yamlInput = await fs.readFile(argv.data, 'utf8');
-    let allData = yaml.parse(yamlInput);
+    const stat = statSync(argv.data);
+    let allData = {};
+    if (stat.isFile()) {
+        const yamlInput = await fs.readFile(argv.data, 'utf8');
+        Object.assign(allData, yaml.parse(yamlInput));
+    } else if (stat.isDirectory()) {
+        // read all files in dir, combine objects together
+        const fileList = await fs.readdir(argv.data);
+        for (const file of fileList) {
+            const yamlInput = await fs.readFile(path.join(argv.data, file), 'utf8');
+            Object.assign(allData, yaml.parse(yamlInput));
+        }
+    }
     if (argv.tag) {
         allData = filterObj(allData, argv.tag);
     }
