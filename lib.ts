@@ -134,6 +134,10 @@ const getYaml = async (argv: Arguments): Promise<ResumeData> => {
     // read all files in dir, combine objects together
     const fileList = await readdir(argv.data);
     for (const file of fileList) {
+      // skip non files
+      if (!(await stat(path.join(argv.data, file))).isFile()) {
+        continue;
+      }
       const yamlInput = await readFile(path.join(argv.data, file), 'utf8');
       yaml.parseAllDocuments(yamlInput).forEach((parsedDoc: Document) => {
         // pretty sure this is expensive, but it's convenient
