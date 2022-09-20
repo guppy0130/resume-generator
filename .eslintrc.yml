@@ -3,18 +3,25 @@ env:
   node: true
   es2020: true
 extends:
-  - 'eslint:recommended'
+  - "eslint:recommended"
+  - "plugin:@typescript-eslint/recommended"
+plugins:
+  - "@typescript-eslint"
+parser: "@typescript-eslint/parser"
+root: true
 rules:
   indent:
-    - error
-    - 4
+    - "error"
+    - 2
+    - SwitchCase: 1
   linebreak-style:
-    - error
-    - unix
+    - "error"
+    - "unix"
   quotes:
-    - error
-    - single
+    - "error"
+    - "single"
   semi:
-    - error
-    - always
+    - "error"
+    - "always"
   no-console: 0
+  "@typescript-eslint/ban-ts-comment": "off"

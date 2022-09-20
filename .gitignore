@@ -3,3 +3,4 @@ node_modules/
 *.pdf
 *.yml
 *.jpg
+.vscode

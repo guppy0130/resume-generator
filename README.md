@@ -13,26 +13,26 @@ Give it a template + some YAML and output a resume. Amazing.
 $ npm i
 <npm output>
 
-$ node index.js
-Usage: index.js -d DATA -t TEMPLATE -o OUTPUT
+$ ts-node index.ts
+Usage: index.ts -d DATA -t TEMPLATE -o OUTPUT
 
 Options:
-  --version       Show version number                                  [boolean]
-  -d, --data      your data                                           [required]
-  -t, --template  the template                                        [required]
-  -o, --output    PDF output                                          [required]
-  -g, --tag       tag
+  -d, --data      your data                                  [string] [required]
+  -t, --template  template to use                            [string] [required]
+  -o, --output    output file (.pdf, .html)                  [string] [required]
+  -p, --position  position to filter for                                [string]
   -h, --help      Show help                                            [boolean]
+  -v, --version   Show version number                                  [boolean]
 
 Examples:
-  index.js -d content.yml -t                fill out template/aeolyus with
+  index.ts -d content.yml -t                fill out template/aeolyus with
   templates/aeolyus -o output.pdf           content.yml and output a PDF to
                                             output.pdf
-  index.js -d content.yml -t                fill out template/aeolyus with
+  index.ts -d content.yml -t                fill out template/aeolyus with
   templates/aeolyus -o output.html          content.yml and output HTML to
                                             output.html
 
-Missing required arguments: d, t, o
+Missing required arguments: data, template, output
 ```
 
 ## Using
@@ -132,7 +132,6 @@ experience:
       The Big Head will work with other Heads to do boat things.
 ```
 
-
 ```yaml
 # data/projects.yml
 ---
@@ -154,30 +153,35 @@ skills:
 
 Then pass `-d data` to combine all `data/*.yml` files into a single object. These two examples are equivalent.
 
-## Tag Magic ✨✨
+## Position Magic ✨✨
 
-If an object has a `tags` key containing an array of values, `-g` will filter that object based on its tag values. That is, given
+If an object has a `positions` key containing an array of values, `-p` will
+filter that object based on its `positions` values. That is, given:
 
 ```yaml
 skills:
   - name: Boating
-    tags:
+    positions:
       - boat
+      - logistics
   - name: Shipping
-    tags:
+    positions:
       - logistics
 ```
 
-And `-g boat`, will output `Boating` for `skills` and not include `Shipping`.
+* `-p boat` will output `Boating` for `skills` and not include `Shipping`.
+* `-p logistics` will output both skills, because `logistics` is present in both
 
-Super handy for putting *all* your data in one place, and then filtering based on job position - tag a `skill` with a `job`, pass `-g JOB`, and build a job-specific resume.
+Super handy for putting *all* your data in one place, and then filtering based
+on position - tag a `skill` with a `position`, pass `-p POSITION`, and build a
+position-specific resume.
 
 ## Template Designing
 
 The following Handlebars helpers are available:
 
 | name           | description                                                                                                                                                            |
-|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `descFixer`    | If given an array, returns bulleted list of items. Otherwise, returns what it was given. Good for descriptions.                                                        |
 | `stringify`    | If given an array, returns items separated with commas. Otherwise, returns what it was given. Good for lists you want to be represented as a sentence or a singe line. |
 | `base64Encode` | Reads in the argument as a filepath (relative to repo root) and converts it to base64. Good for image rendering in PDFs.                                               |
