@@ -215,16 +215,30 @@ const getStyles = (argv: Arguments): string => {
 };
 
 /**
+ * Register handlebars helpers
+ * @param {Arguments} argv - argv object from yargs
+ */
+const registerHandlebarsHelpers = async (argv: Arguments) => {
+  // either the assets are inside the dir passed in, or it's next to the data
+  // file that was passed in, but in either case, use that directory
+  const asset_dir = (await stat(argv.data)).isDirectory()
+    ? argv.data
+    : path.dirname(argv.data);
+  // bind the asset_dir to the first arg of base64Encode
+  hbs.registerHelper('base64Encode', base64Encode.bind(null, asset_dir));
+  hbs.registerHelper('descFixer', descFixer);
+  hbs.registerHelper('stringify', stringify);
+};
+
+/**
  * template out HTML from variety of sources
  * @param {Arguments} argv - argv object from yargs
  * @returns {Promise<string>} compiled HTML
  */
 const setupHtml = async (argv: Arguments): Promise<string> => {
+  await registerHandlebarsHelpers(argv);
   const data = await getYaml(argv);
   const styles = getStyles(argv);
-  hbs.registerHelper('descFixer', descFixer);
-  hbs.registerHelper('stringify', stringify);
-  hbs.registerHelper('base64Encode', base64Encode);
   return getHbs(data, styles, argv);
 };
 
