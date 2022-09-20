@@ -12,9 +12,11 @@
         <div class="position">
             <p>{{ position }}</p>
         </div>
+        {{# if (base64Encode 'img.jpg')}}
         <div class="picture">
             <img src="data:image/png;base64,{{base64Encode 'img.jpg'}}">
         </div>
+        {{/ if }}
         <div class="big-body">
             <div class="left">
                 <div class="exp">
