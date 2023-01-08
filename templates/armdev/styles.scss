@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&family=Lato&display=swap');
+
+$title-font: 'Exo 2';
+$body-font: 'Lato';
+$text-dark: rgb(46, 46, 46);
+$text-medium: rgb(115, 115, 115);
+$theme: rgb(65, 63, 69);
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  font-family: $body-font;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.italics {
+  font-style: italic;
+}
+
+h1,
+h2 {
+  font-family: $title-font;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.header {
+  text-align: center;
+  background-color: $theme;
+  color: white;
+  padding: 3em;
+
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 4em;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+
+  h3,
+  a,
+  p {
+    margin: 0;
+    color: $text-dark;
+    text-decoration: none;
+  }
+
+  h2 {
+    margin: 0.3em 0;
+    color: $text-dark;
+    text-decoration: none;
+  }
+}
+
+time {
+  color: $text-medium;
+}
+
+.left {
+  padding: 1em 1em 0 0;
+  width: 35%;
+  text-align: right;
+  background-color: rgb(236, 236, 236);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  svg {
+    height: 1em;
+    margin-left: 0.5em;
+    color: $text-dark;
+    vertical-align: bottom;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+.center {
+  width: 70%;
+  padding: 1em 1.5em 1em 1em;
+  display: flex;
+  flex-direction: column;
+
+  ul {
+    margin-top: 0.2em;
+    padding-left: 2em;
+  }
+
+  .experience {
+    flex-grow: 1;
+  }
+}
