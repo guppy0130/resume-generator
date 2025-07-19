@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join, normalize, relative, isAbsolute } from 'path';
 
 /**
@@ -18,6 +18,10 @@ const base64Encode = (asset_dir: string, filePath: string): string => {
 
   if (!is_child) {
     throw new Error(`${filePath} went out of ${asset_dir}, not reading`);
+  }
+
+  if (!existsSync(finalFilePath)) {
+    return ""  // caller can't handle exceptions, but can handle empty str
   }
 
   return readFileSync(finalFilePath).toString('base64');

@@ -138,6 +138,10 @@ const getYaml = async (argv: Arguments): Promise<ResumeData> => {
       if (!(await stat(path.join(argv.data, file))).isFile()) {
         continue;
       }
+      // skip not yaml
+      if (!(file.endsWith('yml') || file.endsWith('yaml'))) {
+        continue;
+      }
       const yamlInput = await readFile(path.join(argv.data, file), 'utf8');
       yaml.parseAllDocuments(yamlInput).forEach((parsedDoc: Document) => {
         // pretty sure this is expensive, but it's convenient
