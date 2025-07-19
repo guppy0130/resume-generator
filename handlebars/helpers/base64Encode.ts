@@ -21,7 +21,7 @@ const base64Encode = (asset_dir: string, filePath: string): string => {
   }
 
   if (!existsSync(finalFilePath)) {
-    return ""  // caller can't handle exceptions, but can handle empty str
+    return '';  // caller can't handle exceptions, but can handle empty str
   }
 
   return readFileSync(finalFilePath).toString('base64');
