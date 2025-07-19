@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import hbs from 'handlebars';
-import sass from 'sass';
+import * as sass from 'sass';
 import yaml from 'yaml';
 import { stat, readFile, readdir, writeFile } from 'fs/promises';
 import path from 'path';
