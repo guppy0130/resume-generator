@@ -2,8 +2,10 @@
 name: "test"
 
 on:
-  - "push"
-  - "pull_request"
+  push:
+    branches:
+      - "main"
+  pull_request:
 
 jobs:
   test:
@@ -23,8 +25,3 @@ jobs:
       - run: "bun install"
       - run: "bun run lint"
       - run: "bun run test"
-      - name: "release"
-        uses: "softprops/action-gh-release@v2"
-        if: github.ref_type == 'tag'
-        with:
-          draft: true

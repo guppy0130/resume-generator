@@ -1,0 +1,25 @@
+---
+name: "release"
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  test:
+    name: "Release"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - uses: "oven-sh/setup-bun@v2"
+        with:
+          bun-version: "latest"
+      - run: "bun install"
+      - run: "bun run lint"
+      - run: "bun run test"
+      - name: "release"
+        uses: "softprops/action-gh-release@v2"
+        if: github.ref_type == 'tag'
+        with:
+          draft: true
