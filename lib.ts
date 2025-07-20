@@ -7,7 +7,6 @@ import path from 'path';
 import descFixer from './handlebars/helpers/descFixer';
 import stringify from './handlebars/helpers/stringify';
 import base64Encode from './handlebars/helpers/base64Encode';
-import { Document } from 'yaml/index';
 import type { Arguments } from './index';
 
 /**
@@ -126,7 +125,7 @@ const getYaml = async (argv: Arguments): Promise<ResumeData> => {
   let resumeData = <ResumeData>{};
   if (fileStat.isFile()) {
     const yamlInput = await readFile(argv.data, { encoding: 'utf8' });
-    yaml.parseAllDocuments(yamlInput).forEach((parsedDoc: Document) => {
+    yaml.parseAllDocuments(yamlInput).forEach((parsedDoc) => {
       // pretty sure this is expensive, but it's convenient
       Object.assign(resumeData, yaml.parse(parsedDoc.toString()));
     });
@@ -143,7 +142,7 @@ const getYaml = async (argv: Arguments): Promise<ResumeData> => {
         continue;
       }
       const yamlInput = await readFile(path.join(argv.data, file), 'utf8');
-      yaml.parseAllDocuments(yamlInput).forEach((parsedDoc: Document) => {
+      yaml.parseAllDocuments(yamlInput).forEach((parsedDoc) => {
         // pretty sure this is expensive, but it's convenient
         Object.assign(resumeData, yaml.parse(parsedDoc.toString()));
       });
