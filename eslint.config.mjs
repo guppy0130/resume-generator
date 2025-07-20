@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
+import stylistic from '@stylistic/eslint-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +21,7 @@ export default defineConfig([{
 
   plugins: {
     '@typescript-eslint': typescriptEslint,
+    '@stylistic': stylistic,
   },
 
   languageOptions: {
@@ -35,10 +37,10 @@ export default defineConfig([{
       SwitchCase: 1,
     }],
 
-    'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-console': 0,
-    '@typescript-eslint/ban-ts-comment': 'off',
+    '@stylistic/linebreak-style': ['error', process.platform == 'win32' ? 'windows' : 'unix'],
+    '@stylistic/ban-ts-comment': 'off',
   },
 }]);

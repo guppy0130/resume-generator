@@ -53,7 +53,7 @@ const argv: Arguments = yargs(hideBin(process.argv))
     '$0 -d content.yml -t templates/aeolyus -o output.html',
     'fill out template/aeolyus with content.yml and output HTML to output.html'
   )
-  // @ts-ignore
+  // @ts-expect-error TODO: investigate
   .options(options)
   .scriptName('index.ts')  // this seems wrong, but it helps with `bun run`
   .help('h')

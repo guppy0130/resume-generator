@@ -29,9 +29,9 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^5.2.0",
     "@types/mocha": "^10.0.10",
     "@types/yargs": "^17.0.33",
-    "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
     "eslint": "^9.31.0",
     "mocha": "^11.7.1",
