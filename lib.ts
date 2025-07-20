@@ -123,12 +123,11 @@ const getYaml = async (argv: Arguments): Promise<ResumeData> => {
   // we'll build the object with user-supplied YAML input, so go ahead and type
   // it now
   let resumeData = <ResumeData>{};
+
+  // populate the files to read
+  const files: string[] = [];
   if (fileStat.isFile()) {
-    const yamlInput = await readFile(argv.data, { encoding: 'utf8' });
-    yaml.parseAllDocuments(yamlInput).forEach((parsedDoc) => {
-      // pretty sure this is expensive, but it's convenient
-      Object.assign(resumeData, yaml.parse(parsedDoc.toString()));
-    });
+    files.push(argv.data);
   } else if (fileStat.isDirectory()) {
     // read all files in dir, combine objects together
     const fileList = await readdir(argv.data);
@@ -141,19 +140,27 @@ const getYaml = async (argv: Arguments): Promise<ResumeData> => {
       if (!(file.endsWith('yml') || file.endsWith('yaml'))) {
         continue;
       }
-      const yamlInput = await readFile(path.join(argv.data, file), 'utf8');
-      yaml.parseAllDocuments(yamlInput).forEach((parsedDoc) => {
-        // pretty sure this is expensive, but it's convenient
-        Object.assign(resumeData, yaml.parse(parsedDoc.toString()));
-      });
+      files.push(path.join(argv.data, file));
     }
   }
+
+  // read the files
+  for (const file of files) {
+    const yamlInput = await readFile(file, { encoding: 'utf8' });
+    yaml.parseAllDocuments(yamlInput).forEach((parsedDoc: yaml.Document) => {
+      // pretty sure this is expensive, but it's convenient
+      Object.assign(resumeData, yaml.parse(parsedDoc.toString()));
+    });
+  }
+
+  // apply the position-specific filters
   if (argv.position) {
     // `as` is used here because this is a filter, but it doesn't delete
     // top-level keys
     resumeData = filterObj(resumeData, argv.position) as ResumeData;
+    // inject the position if set
+    resumeData['position'] = argv.position;
   }
-  resumeData['position'] = argv.position;
   return resumeData;
 };
 

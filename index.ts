@@ -1,6 +1,6 @@
 import { setupHtml, renderToPDF, renderToHTML } from './lib';
 import path from 'path';
-import yargs from 'yargs/yargs';
+import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
 interface Arguments {
@@ -55,9 +55,10 @@ const argv: Arguments = yargs(hideBin(process.argv))
   )
   // @ts-ignore
   .options(options)
+  .scriptName('index.ts')  // this seems wrong, but it helps with `bun run`
   .help('h')
   .alias('h', 'help')
-  .version('v')
+  .version()
   .alias('v', 'version')
   .parseSync() as unknown as Arguments;
 
