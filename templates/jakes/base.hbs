@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <style>
+{{{styles}}}
+    </style>
+  </head>
+  <body>
+    <div class='name'>
+      <h1>{{name}}</h1>
+    </div>
+    <div class='contact'>
+      <div class='phone'>
+        <a href='tel:{{contact.phone}}'>{{contact.phone}}</a>
+      </div>
+      <div class='email'>
+        <a href='mailto:{{contact.email}}'>{{contact.email}}</a>
+      </div>
+      <div class='linkedin'>
+        <a
+          href='https://linkedin.com/in/{{contact.linkedin}}'
+        >linkedin.com/in/{{contact.linkedin}}</a>
+      </div>
+      <div class='github'>
+        <a
+          href='https://github.com/{{contact.github}}'
+        >github.com/{{contact.github}}</a>
+      </div>
+    </div>
+    <div class='edu'>
+      <h2>Education</h2>
+      {{#each education}}
+        <div class='entry'>
+          <div class='header'>
+            <div class='left'>
+              <h3>{{name}}</h3>
+              <p class="italics">{{major}}</p>
+            </div>
+            <div class='right'>
+              <div class='dates'>
+                <time
+                  datetime='{{dates.start}}'
+                >{{dates.start}}</time>&ndash;<time
+                  datetime='{{dates.end}}'
+                >{{dates.end}}</time>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class='exp'>
+      <h2>Experience</h2>
+      {{#each experience}}
+        <div class='entry'>
+          <div class='header'>
+            <div class='left'>
+              <h3>{{name}}</h3>
+              <p class='italics'>{{position}}</p>
+            </div>
+            <div class='right'>
+              <div class='dates'>
+                <time
+                  datetime='{{dates.start}}'
+                >{{dates.start}}</time>&ndash;<time
+                  datetime='{{dates.end}}'
+                >{{dates.end}}</time>
+              </div>
+            </div>
+          </div>
+          <div class="content">
+            <p>{{description}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class='projects'>
+      <h2>Projects</h2>
+      {{#each projects}}
+        <div class='entry'>
+          <div class='header'>
+            <div class='left'>
+              <h3>{{name}}</h3>
+            </div>
+            <div class="right">
+              <a href='https://{{url}}'>{{url}}</a>
+            </div>
+          </div>
+          {{#if description}}
+          <div class="content">
+            <p>{{ description }}</p>
+          </div>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+    <div class='skills'>
+      <h2>Technical Skills</h2>
+      {{#each skills}}
+      {{name}}: {{ stringify items }}<br>
+      {{/each}}
+    </div>
+  </body>
+</html>

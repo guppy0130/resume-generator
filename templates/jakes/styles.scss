@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+  margin: 0;
+}
+
+body {
+  margin: 0 auto;
+  padding-top: 5%;
+  width: 80vw;
+  max-width: 80vw;
+  font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+h2 {
+  border-bottom: 1px solid black;
+  margin-bottom: 0.75em;
+}
+
+// custom override because it's not as important? or is it just last?
+.skills {
+  h2 {
+    margin-bottom: 0.25em;
+  }
+}
+
+a {
+  color: black;
+}
+
+.name {
+  text-align: center;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.contact {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  div {
+    margin: 0;
+    padding: 0 0.5em;
+    border-right: 1px solid black;
+
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+}
+
+.entry {
+  .header {
+    width: 100%;
+    margin-bottom: 0.25em;
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      max-width: 80%;
+
+      * {
+        margin: 0;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .content p {
+    margin: 0 0 0.5em;
+  }
+}
