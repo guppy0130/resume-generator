@@ -180,8 +180,8 @@ position-specific resume.
 
 The following Handlebars helpers are available:
 
-| name           | description                                                                                                                                                            |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `descFixer`    | If given an array, returns bulleted list of items. Otherwise, returns what it was given. Good for descriptions.                                                        |
-| `stringify`    | If given an array, returns items separated with commas. Otherwise, returns what it was given. Good for lists you want to be represented as a sentence or a singe line. |
-| `base64Encode` | Reads in the argument as a filepath (relative to repo root) and converts it to base64. Good for image rendering in PDFs.                                               |
+| name           | description                                                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `descFixer`    | If given an array, returns bulleted list of items. Otherwise, returns what it was given. Good for descriptions.                                                                 |
+| `stringify`    | If given an array, returns items' `.name` separated with commas. Otherwise, returns what it was given. Good for lists you want to be represented as a sentence or a singe line. |
+| `base64Encode` | Reads in the argument as a filepath (relative to repo root) and converts it to base64. Good for image rendering in PDFs.                                                        |
