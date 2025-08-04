@@ -7,6 +7,7 @@ import path from 'path';
 import descFixer from './handlebars/helpers/descFixer';
 import stringify from './handlebars/helpers/stringify';
 import base64Encode from './handlebars/helpers/base64Encode';
+import { first, random } from './handlebars/helpers/arrayOps';
 import type { Arguments } from './index';
 
 /**
@@ -238,6 +239,8 @@ const registerHandlebarsHelpers = async (argv: Arguments) => {
   hbs.registerHelper('base64Encode', base64Encode.bind(null, asset_dir));
   hbs.registerHelper('descFixer', descFixer);
   hbs.registerHelper('stringify', stringify);
+  hbs.registerHelper('first', first);
+  hbs.registerHelper('random', random);
 };
 
 /**
